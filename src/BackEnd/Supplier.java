@@ -1,25 +1,28 @@
 package BackEnd;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class Supplier {
-    private String id;
+    private int id;
     private String companyName;
+    private String address;
     private String salesContact;
-    private Item item;
+    private ArrayList<Item> items;
 
-    public Supplier(String company, String sales, Item item) {
-        this.id = UUID.randomUUID().toString();
+    public Supplier(int id, String company, String address, String sales) {
+        this.id = id;
         this.companyName = company;
+        this.address = address;
         this.salesContact = sales;
-        this.item = item;
+        items = new ArrayList<>();
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -39,11 +42,19 @@ public class Supplier {
         this.salesContact = salesContact;
     }
 
-    public Item getItem() {
-        return item;
+    public String getAddress() {
+        return address;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
     }
 }

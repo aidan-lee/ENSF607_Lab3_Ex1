@@ -7,7 +7,11 @@ public class Shop {
     private ArrayList<Item> items;
     private SupplierList supplierList;
 
-    public Shop(ArrayList<Item> items, SupplierList supplierList) {
+    public Shop() {
+
+        FileManager fileManager = FileManager.getFileManager();
+        fileManager.generateInventory();
+
         this.items = items;
         this.supplierList = supplierList;
     }

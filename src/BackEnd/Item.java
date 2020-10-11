@@ -3,26 +3,26 @@ package BackEnd;
 import java.util.UUID;
 
 public class Item {
-    private String id;
+    private int id;
     private String name;
     private int quantity;
     private double price;
+    private int supplierId;
     private Supplier supplier;
 
-    public Item(String name, int quantity, double price, Supplier supplier) {
-        this.id = UUID.randomUUID().toString();
+    public Item(int id, String name, int quantity, double price, int supplierId) {
+        this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.price = price;
-        this.supplier = supplier;
-
+        this.supplierId = supplierId;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -56,5 +56,13 @@ public class Item {
 
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
+    }
+
+    public int getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
     }
 }
