@@ -16,7 +16,8 @@ public class Inventory {
             ArrayList<Item> result = new ArrayList<>();
 
             for (Item item : items) {
-                if (item.getName().equals(name)) {
+                String itemName = item.getName();
+                if (itemName.equals(name) || name.contains(itemName) ){
                     result.add(item);
                 }
             }
@@ -27,17 +28,14 @@ public class Inventory {
         }
     }
 
-    public ArrayList<Item> searchItemsById(int id) throws Exception {
+    public Item searchItemsById(int id) throws Exception {
         if (id >= 0) {
-            ArrayList<Item> result = new ArrayList<>();
-
             for (Item item : items) {
                 if (item.getId() == id) {
-                    result.add(item);
+                    return item;
                 }
             }
-
-            return result;
+            return null;
         }
         else {
             throw new Exception("Invalid search parameter.");
