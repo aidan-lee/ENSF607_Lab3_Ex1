@@ -17,41 +17,6 @@ public class Shop {
         this.scanner = new Scanner(System.in);
     }
 
-//    public void decreaseItemQuantity(String input) {
-//        Item target = null;
-//        try {
-//            int id = Integer.parseInt(input);
-//            Item item = inventory.searchItemsById(id);
-//            if (item != null) {
-//                decreaseQuantity(item);
-//            }
-//            else {
-//                System.out.println("Item not found");
-//            }
-//        }
-//        catch (NumberFormatException e){
-//            try {
-//                ArrayList<Item> items = inventory.searchItemsByName(input);
-//                if (!items.isEmpty()) {
-//                    Item item = items.get(0);
-//                    decreaseQuantity(item);
-//                }
-//                else {
-//                    System.out.println("Item not found.");
-//                }
-//            }
-//            catch (Exception ex){
-//                System.out.println("Invalid input. Please try again.");
-//
-//            }
-//
-//        }
-//        catch (Exception ex) {
-//            System.out.println("Invalid input. Please try again.");
-//
-//        }
-//    }
-
     public void printOrder() {
         Order order = inventory.getOrder();
         System.out.println(order.toString());
@@ -110,25 +75,6 @@ public class Shop {
         }
     }
 
-//    public void getItemQuantity(String input) {
-//        try {
-//            getQuantityById(input);
-//        }
-//        // If Integer.parseInt throws an exception, the input was not an ID
-//        catch (NumberFormatException e) {
-//            try {
-//                getQuantityByName(input);
-//            }
-//            catch(Exception ex) {
-//                System.out.println("Invalid input. Please try again.");
-//            }
-//        }
-//        catch (Exception e) {
-//            System.out.println("Invalid input. Please try again.");
-//        }
-//
-//    }
-
     public void getQuantityByName(String input) {
         try {
             ArrayList<Item> items = inventory.searchItemsByName(input);
@@ -183,12 +129,14 @@ public class Shop {
 
             Item item = inventory.searchItemsById(id);
             ArrayList<Item> result = new ArrayList<>();
-            result.add(item);
+            if (item != null) {
+                result.add(item);
+            }
             showSearchResults(result);
 
         }
         catch (Exception e) {
-            System.out.println("Invalid search parameters. Please try again.");
+            System.out.println(e.getMessage());
         }
     }
 
