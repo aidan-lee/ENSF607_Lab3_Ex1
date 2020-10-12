@@ -99,6 +99,10 @@ public class FileManager {
         }
     }
 
+    public SupplierList getSupplierList() {
+        return new SupplierList(suppliers);
+    }
+
     public ArrayList<Supplier> getSuppliers() {
         return suppliers;
     }
@@ -114,4 +118,5 @@ public class FileManager {
     public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
+
 }

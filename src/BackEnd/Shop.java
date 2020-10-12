@@ -12,8 +12,8 @@ public class Shop {
         FileManager fileManager = FileManager.getFileManager();
         fileManager.generateInventory();
 
-        this.items = items;
-        this.supplierList = supplierList;
+        this.items = fileManager.getItems();
+        this.supplierList = fileManager.getSupplierList();
     }
 
     public ArrayList<Item> getItems() {
