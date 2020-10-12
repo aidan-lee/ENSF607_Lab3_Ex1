@@ -16,6 +16,13 @@ public class Shop {
         this.supplierList = fileManager.getSupplierList();
     }
 
+    public void listItems() {
+        System.out.println("Listing all items:");
+        for (Item item : items) {
+            System.out.println(item.toString());
+        }
+    }
+
     public ArrayList<Item> getItems() {
         return items;
     }

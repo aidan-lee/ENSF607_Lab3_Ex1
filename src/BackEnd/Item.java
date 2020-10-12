@@ -26,6 +26,11 @@ public class Item {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return ("- " + this.name + "\n\tQuantity: " + this.quantity + ", Price: " + this.price + ", From supplier " + this.supplier.getCompanyName());
+    }
+
     public String getName() {
         return name;
     }

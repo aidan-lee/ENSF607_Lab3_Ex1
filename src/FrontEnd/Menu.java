@@ -8,5 +8,7 @@ public class Menu {
         System.out.println("Hello");
 
         Shop shop = new Shop();
+
+        shop.listItems();
     }
 }
