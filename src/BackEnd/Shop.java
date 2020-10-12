@@ -17,10 +17,65 @@ public class Shop {
         this.scanner = new Scanner(System.in);
     }
 
-    public void decreaseItemQuantity(String input) {
-        Item target = null;
+//    public void decreaseItemQuantity(String input) {
+//        Item target = null;
+//        try {
+//            int id = Integer.parseInt(input);
+//            Item item = inventory.searchItemsById(id);
+//            if (item != null) {
+//                decreaseQuantity(item);
+//            }
+//            else {
+//                System.out.println("Item not found");
+//            }
+//        }
+//        catch (NumberFormatException e){
+//            try {
+//                ArrayList<Item> items = inventory.searchItemsByName(input);
+//                if (!items.isEmpty()) {
+//                    Item item = items.get(0);
+//                    decreaseQuantity(item);
+//                }
+//                else {
+//                    System.out.println("Item not found.");
+//                }
+//            }
+//            catch (Exception ex){
+//                System.out.println("Invalid input. Please try again.");
+//
+//            }
+//
+//        }
+//        catch (Exception ex) {
+//            System.out.println("Invalid input. Please try again.");
+//
+//        }
+//    }
+
+    public void printOrder() {
+        Order order = inventory.getOrder();
+        System.out.println(order.toString());
+    }
+
+    public void decreaseQuantityByName(String name) {
         try {
-            int id = Integer.parseInt(input);
+            ArrayList<Item> items = inventory.searchItemsByName(name);
+            if (!items.isEmpty()) {
+                Item item = items.get(0);
+                decreaseQuantity(item);
+            }
+            else {
+                System.out.println("Item not found.");
+            }
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+
+        }
+    }
+
+    public void decreaseQuantityById(int id) {
+        try {
             Item item = inventory.searchItemsById(id);
             if (item != null) {
                 decreaseQuantity(item);
@@ -29,27 +84,10 @@ public class Shop {
                 System.out.println("Item not found");
             }
         }
-        catch (NumberFormatException e){
-            try {
-                ArrayList<Item> items = inventory.searchItemsByName(input);
-                if (!items.isEmpty()) {
-                    Item item = items.get(0);
-                    decreaseQuantity(item);
-                }
-                else {
-                    System.out.println("Item not found.");
-                }
-            }
-            catch (Exception ex){
-                System.out.println("Invalid input. Please try again.");
-
-            }
-
-        }
         catch (Exception ex) {
-            System.out.println("Invalid input. Please try again.");
-
+            System.out.println(ex.getMessage());
         }
+
     }
 
     private void decreaseQuantity(Item item) {
@@ -72,44 +110,54 @@ public class Shop {
         }
     }
 
-    public void getItemQuantity(String input) {
+//    public void getItemQuantity(String input) {
+//        try {
+//            getQuantityById(input);
+//        }
+//        // If Integer.parseInt throws an exception, the input was not an ID
+//        catch (NumberFormatException e) {
+//            try {
+//                getQuantityByName(input);
+//            }
+//            catch(Exception ex) {
+//                System.out.println("Invalid input. Please try again.");
+//            }
+//        }
+//        catch (Exception e) {
+//            System.out.println("Invalid input. Please try again.");
+//        }
+//
+//    }
+
+    public void getQuantityByName(String input) {
         try {
-            getQuantityById(input);
-        }
-        // If Integer.parseInt throws an exception, the input was not an ID
-        catch (NumberFormatException e) {
-            try {
-                getQuantityByName(input);
+            ArrayList<Item> items = inventory.searchItemsByName(input);
+            if (!items.isEmpty()) {
+                Item item = items.get(0);
+                displayQuantity(item);
             }
-            catch(Exception ex) {
-                System.out.println("Invalid input. Please try again.");
+            else {
+                System.out.println("No tool with name matching " + input + " found. Please try again.");
             }
         }
-        catch (Exception e) {
-            System.out.println("Invalid input. Please try again.");
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
 
     }
 
-    private void getQuantityByName(String input) throws Exception {
-        ArrayList<Item> items = inventory.searchItemsByName(input);
-        if (!items.isEmpty()) {
-            Item item = items.get(0);
-            displayQuantity(item);
+    public void getQuantityById(int id) {
+        try {
+            Item item = inventory.searchItemsById(id);
+            if (item != null) {
+                displayQuantity(item);
+            }
+            else {
+                System.out.println("No tool with ID " + id + " found. Please try again.");
+            }
         }
-        else {
-            System.out.println("No tool with name matching " + input + " found. Please try again.");
-        }
-    }
-
-    private void getQuantityById(String input) throws Exception {
-        int id = Integer.parseInt(input);
-        Item item = inventory.searchItemsById(id);
-        if (item != null) {
-            displayQuantity(item);
-        }
-        else {
-            System.out.println("No tool with ID " + id + " found. Please try again.");
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
