@@ -1,18 +1,75 @@
 package BackEnd;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Shop {
 
     private Inventory inventory;
     private SupplierList supplierList;
+    private Scanner scanner;
 
     public Shop() {
 
         FileManager fileManager = FileManager.getFileManager();
         inventory = fileManager.generateInventory();
-
         this.supplierList = fileManager.getSupplierList();
+        this.scanner = new Scanner(System.in);
+    }
+
+    public void decreaseItemQuantity(String input) {
+        Item target = null;
+        try {
+            int id = Integer.parseInt(input);
+            Item item = inventory.searchItemsById(id);
+            if (item != null) {
+                decreaseQuantity(item);
+            }
+            else {
+                System.out.println("Item not found");
+            }
+        }
+        catch (NumberFormatException e){
+            try {
+                ArrayList<Item> items = inventory.searchItemsByName(input);
+                if (!items.isEmpty()) {
+                    Item item = items.get(0);
+                    decreaseQuantity(item);
+                }
+                else {
+                    System.out.println("Item not found.");
+                }
+            }
+            catch (Exception ex){
+                System.out.println("Invalid input. Please try again.");
+
+            }
+
+        }
+        catch (Exception ex) {
+            System.out.println("Invalid input. Please try again.");
+
+        }
+    }
+
+    private void decreaseQuantity(Item item) {
+        System.out.println("Found item " + item.getName() + ".");
+        System.out.println("Decrease quantity of this item by one? Enter y or n.");
+
+        String response = scanner.nextLine();
+        if (response.toLowerCase().equals("y")) {
+            int oldQuantity = item.getQuantity();
+            item.setQuantity(oldQuantity--);
+            System.out.println("Item " + item.getName() + " quantity reduced to " + item.getQuantity() + ".");
+
+            if (oldQuantity < 40) {
+                Order order = inventory.getOrder();
+                order.generateOrderLine(item, (oldQuantity + 40));
+            }
+        }
+        else {
+            System.out.println("No modifications to item " + item.getName() + ".");
+        }
     }
 
     public void getItemQuantity(String input) {
