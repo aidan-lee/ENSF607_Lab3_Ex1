@@ -9,6 +9,15 @@ public class Menu {
 
         Shop shop = new Shop();
 
-        shop.listItems();
+        //shop.listItems();
+//
+//        shop.searchItemsByName("Thingies");
+//        shop.searchItemsByName("");
+//        shop.searchItemsByName("bleh");
+
+
+        shop.searchItemsById(8015);
+        shop.searchItemsById(1000);
+        shop.searchItemsById(-1);
     }
 }
