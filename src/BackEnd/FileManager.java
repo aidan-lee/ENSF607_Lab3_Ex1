@@ -6,17 +6,39 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * A class that reads the items.txt and suppliers.txt files and creates the appropriate objects.
+ * Meant to simulate a database.
+ */
 public class FileManager {
 
+    /**
+     * A Singleton instance of the FileManager class
+     */
     private static FileManager instance;
+
+    /**
+     * A list of Supplier objects
+     */
     private ArrayList<Supplier> suppliers;
+
+    /**
+     * A list of Item objects
+     */
     private ArrayList<Item> items;
 
+    /**
+     * FileManager constructor.
+     */
     private FileManager() {
         suppliers = new ArrayList<>();
         items = new ArrayList<>();
     }
 
+    /**
+     * Retrieves or creates the single instance of the FileManager class
+     * @return FileManager object
+     */
     public static FileManager getFileManager() {
         if (instance == null) {
             instance = new FileManager();
@@ -25,6 +47,10 @@ public class FileManager {
         return instance;
     }
 
+    /**
+     * Reads text files, creates objects from the files, and creates an Inventory object
+     * @return
+     */
     public Inventory generateInventory() {
 
         readSupplierFile();
@@ -37,6 +63,9 @@ public class FileManager {
         return inventory;
     }
 
+    /**
+     * Creates the two-way association between Supplier and Item objects
+     */
     private void linkItemsAndSuppliers() {
         for (Supplier supplier : suppliers) {
             for (Item item : items) {
@@ -48,6 +77,9 @@ public class FileManager {
         }
     }
 
+    /**
+     * Reads suppliers.txt and creates a Supplier object from each line
+     */
     private void readSupplierFile() {
         try {
             File supplierFile = new File("src/BackEnd/suppliers.txt");
@@ -73,6 +105,9 @@ public class FileManager {
         }
     }
 
+    /**
+     * Reads items.txt and creates a Supplier object from each line
+     */
     private void readItemsFile() {
         try {
             File itemFile = new File("src/BackEnd/items.txt");
@@ -99,22 +134,42 @@ public class FileManager {
         }
     }
 
+    /**
+     * Creates a SupplierList object from the list of Supplier objects
+     * @return A SupplierList object
+     */
     public SupplierList getSupplierList() {
         return new SupplierList(suppliers);
     }
 
+    /**
+     * Retrieves the list of Supplier objects
+     * @return A list of Supplier objects
+     */
     public ArrayList<Supplier> getSuppliers() {
         return suppliers;
     }
 
+    /**
+     * Sets the 'supplier' class attribute to the specified parameter
+     * @param suppliers A list of Supplier objects
+     */
     public void setSuppliers(ArrayList<Supplier> suppliers) {
         this.suppliers = suppliers;
     }
 
+    /**
+     * Retrieves the list of Item objects
+     * @return A list of Item objects
+     */
     public ArrayList<Item> getItems() {
         return items;
     }
 
+    /**
+     * Sets the 'items' class attribute to the specified parameter
+     * @param items A list of Item objects
+     */
     public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
