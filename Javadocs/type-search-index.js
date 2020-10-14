@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"BackEnd","l":"FileManager"},{"p":"BackEnd","l":"Inventory"},{"p":"BackEnd","l":"Item"},{"p":"FrontEnd","l":"Menu"},{"p":"BackEnd","l":"Order"},{"p":"BackEnd","l":"OrderLine"},{"p":"BackEnd","l":"Shop"},{"p":"BackEnd","l":"Supplier"},{"p":"BackEnd","l":"SupplierList"}]

@@ -86,7 +86,7 @@ public class Shop {
     /**
      * Checks for user confirmation before decreasing quantity.  If quantity falls below 40, generates an OrderLine
      * for the Item.
-     * @param item
+     * @param item An Item object
      */
     private void decreaseQuantity(Item item) {
         System.out.println("Found item " + item.getName() + ".");
@@ -162,7 +162,7 @@ public class Shop {
 
     /**
      * Prints the Item quantity to the console
-     * @param item
+     * @param item An Item object
      */
     private void displayQuantity(Item item) {
         System.out.println("Item " + item.getName() + " has quantity " + item.getQuantity() + ".");
@@ -234,7 +234,7 @@ public class Shop {
 
     /**
      * Retrieves the Shop's Inventory object
-     * @return
+     * @return An Inventory object
      */
     public Inventory getInventory() {
         return inventory;
